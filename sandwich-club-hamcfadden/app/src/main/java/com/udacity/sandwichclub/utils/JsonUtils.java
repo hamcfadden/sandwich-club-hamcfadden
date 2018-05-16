@@ -48,7 +48,7 @@ public final class JsonUtils {
             JSONArray JSONArrayIngredients = mainJsonObject.getJSONArray(DETAIL_INGREDIENTS);
             List<String> ingredients = convertToListFromJsonArray(JSONArrayIngredients);
 
-            return new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description,image, ingredients);
+            return new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
 
         } catch (JSONException e) {
             Log.e(TAG, e.getMessage());

@@ -18,7 +18,6 @@ import java.util.List;
 public class DetailActivity extends AppCompatActivity {
 
 
-
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
@@ -32,14 +31,13 @@ public class DetailActivity extends AppCompatActivity {
     private TextView mIngredientsLabel;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
         ImageView image_iv = findViewById(R.id.image_iv);
+
         mAlsoKnownLabel = findViewById(R.id.also_known_label);
         mAlsoKnownTv = findViewById(R.id.also_known_tv);
         mOriginLabel = findViewById(R.id.origin_label);
@@ -67,6 +65,7 @@ public class DetailActivity extends AppCompatActivity {
         Sandwich sandwich = JsonUtils.parseSandwichJson(json);
 
         if (sandwich == null) {
+
             // Sandwich data unavailable
             closeOnError();
             return;
@@ -74,12 +73,21 @@ public class DetailActivity extends AppCompatActivity {
 
         populateUI(sandwich);
 
+        Picasso.with(this)
+                .load(sandwich.getImage())
+                .placeholder(R.drawable.subplatter)
+                .into(image_iv);
 
-        setTitle(sandwich.getMainName());
 
-    }
+
+    setTitle(sandwich.getMainName());
+
+
+}
+
 
     private void closeOnError() {
+
         finish();
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
